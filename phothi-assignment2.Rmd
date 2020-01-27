@@ -1,0 +1,50 @@
+---
+title: "phothi-assignment2"
+author: "Pavan Hothi"
+date: "1/25/2020"
+output:
+  md_document:
+    variant: gfm
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(ggplot2)
+```
+
+
+```{r}
+data("economics")
+str(economics)
+
+```
+
+#Question:
+
+How does U.S. population size affect personal savings rate?
+
+```{r}
+
+ggplot(data = economics, mapping = aes(x = pop, y = psavert)) +
+  geom_point(alpha = .5) +
+  scale_x_log10() +
+  stat_smooth(method = "lm") +
+  xlim(150000, 350000) +
+  xlab("Population (In Thousands)") +
+  ylab("Personal Savings Rate (Percent)") +
+ggtitle("Personal Savings Rate By Population") 
+
+```
+#Caption:
+
+Depicition of personal savings rate by an increasing U.S. population over time. 
+
+#Summary:
+
+The economics datset used to produce the above visualization is an R built-in dataset. The data is a U.S. economic time series which comes from https://fred.stlouisfed.org/. The dataset contains 6 separate variables, with 574 observations. The data is monthly data from July 1st, 1967 to April 1st, 2015. The variables focused on for this visualization to answer the question were pop and psavert. pop is simply the total population in thousands, and psavert is personal savings rate. Personal savings rate is the percentage of your income which is put into savings. I wanted to look at and see if there was any relationship between or affect on personal savings rate by the growing U.S. population over time. To do this, I used ggplot2 to create a scatter plot, plotting the population data on the x-axis and the personal savings rate data on the y-axis. To this scatterplot, a smaoother was added in order to better show the pattern and trend of the plot. The x-axis scale had to be adjusted to 150000, 350000 in order to better fullY show the plot. From the findings, it is clearly evident that there is a negative correlation between the two variables. As U.S. population increases over time, personal savings rate is seen to be decreasing. 
